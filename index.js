@@ -1,5 +1,10 @@
 const AWS = require("aws-sdk");
 
+const mongoose = require("mongoose");
+const authenticate = require("mm-authenticate")(mongoose);
+
+const { send, buffer } = require("micro");
+
 const s3 = new AWS.S3({
   params: { Bucket: "mechmania2019" }
 });
