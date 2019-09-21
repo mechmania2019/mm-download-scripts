@@ -1,5 +1,5 @@
 {
-  "name": "mm-scripts",
+  "name": "mm-download-scripts",
   "scripts": {
     "start": "node index.js",
     "deploy": "./deploy.sh"

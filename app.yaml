@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: scripts
+  name: download-scripts
   labels:
-    app: scripts
+    app: download-scripts
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: scripts
+      app: download-scripts
   template:
     metadata:
       labels:
-        app: scripts
+        app: download-scripts
     spec:
       containers:
-      - name: scripts
-        image: gcr.io/mechmania2017/scripts:latest
+      - name: download-scripts
+        image: gcr.io/mechmania2017/download-scripts:latest
         ports:
           - containerPort: 3000
         env:
@@ -48,13 +48,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: scripts-service
+  name: download-scripts-service
 spec:
   type: LoadBalancer
   selector:
-    app: scripts
+    app: download-scripts
   ports:
     - port: 80
-      name: scripts-service
+      name: download-scripts-service
       targetPort: 3000
       protocol: TCP
