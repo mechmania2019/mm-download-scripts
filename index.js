@@ -1,7 +1,3 @@
-const { promisify } = require("util");
-
-const path = require("path");
-const tar = require("tar");
 const AWS = require("aws-sdk");
 
 const s3 = new AWS.S3({
