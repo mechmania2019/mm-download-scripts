@@ -11,10 +11,20 @@ const s3 = new AWS.S3({
 
 module.exports = authenticate(async (req, res) => {
   console.log(req.url);
-  if (req.url === "/") {
-    const key = req.url.slice(1);
-    const data = s3
-        .getObject({Key: `scripts/${key}`})
-        .createReadStream();
-    data.pipe(res);
+  try {
+    if (req.url === "/") {
+      const key = req.url.slice(1);
+      const data = s3
+          .getObject({Key: `scripts/${key}`})
+          .createReadStream();
+      data.pipe(res);
+      return;
+    }
+  } catch(e) {
+    send(res, 400, `Error: ${e}`);
+    return;
   }
+  
+  send(res, 400, "Error: no / in url");
+  return;
+});
